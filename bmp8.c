@@ -75,6 +75,92 @@ void bmp8_printInfo(t_bmp8 *img) {
         printf("Erreur : image non chargée.\n");
         return;
     }
+
+void bmp8_negative(t_bmp8 *img) {
+    if (!img || !img->data) {
+        printf("Probleme d'image invalide pour l'inversion.\n");
+        return;
+    }
+
+    for (unsigned int i = 0; i < img->dataSize; i++) {
+        img->data[i] = 255 - img->data[i];
+    }
+}
+void bmp8_brightness(t_bmp8 *img, int value) {
+    if (!img || !img->data) {
+        printf("Probleme d'image invalide pour ajuster la luminosité.\n");
+        return;
+    }
+
+    for (unsigned int i = 0; i < img->dataSize; i++) {
+        int nouvelleVal = img->data[i] + value;
+
+        if (nouvelleVal > 255) {
+            img->data[i] = 255;
+        } else if (nouvelleVal < 0) {
+            img->data[i] = 0;
+        } else {
+            img->data[i] = (unsigned char)nouvelleVal;
+        }
+    }
+}
+void bmp8_threshold(t_bmp8 *img, int threshold) {
+    if (!img || !img->data) {
+        printf("Probleme d'image invalide pour seuillage.\n");
+        return;
+    }
+
+    for (unsigned int i = 0; i < img->dataSize; i++) {
+        if (img->data[i] >= threshold) {
+            img->data[i] = 255;
+        } else {
+            img->data[i] = 0;
+        }
+    }
+}
+void bmp8_applyFilter(t_bmp8 *img, float **kernel, int kernelSize) {
+    if (!img || !img->data) {
+        printf("Probleme d'image invalide pour filtre.\n");
+        return;
+    }
+
+    int n = kernelSize / 2;
+    unsigned char *newData = malloc(img->dataSize);
+
+    if (!newData) {
+        printf("Probleme d'allocation mémoire pour le filtrage.\n");
+        return;
+    }
+
+    // on realise la copie des données des origines
+    memcpy(newData, img->data, img->dataSize);
+
+    for (int y = n; y < img->height - n; y++) {
+        for (int x = n; x < img->width - n; x++) {
+            float sum = 0.0;
+
+            for (int i = -n; i <= n; i++) {
+                for (int j = -n; j <= n; j++) {
+                    int pixel = img->data[(y + i) * img->width + (x + j)];
+                    float coeff = kernel[i + n][j + n];
+                    sum += pixel * coeff;
+                }
+            }
+
+            // Clamp la valeur entre 0 et 255
+            if (sum < 0) sum = 0;
+            if (sum > 255) sum = 255;
+
+            newData[y * img->width + x] = (unsigned char)sum;
+        }
+    }
+
+    // Copie finale dans img->data
+    memcpy(img->data, newData, img->dataSize);
+    free(newData);
+}
+
+
 //Rappel que l'utilisation de %u est pour l'affichage d'un entier non signé
     printf("Image Info:\n");
     printf("  Width: %u\n", img->width);
