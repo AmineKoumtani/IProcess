@@ -1,6 +1,6 @@
 # IProcess Réalisé par RIAD DIB et AMINE Koumtani
 
-Projet C – Traitement et manipulation d’images BMP
+[Projet C – Traitement et manipulation d’images BMP
 
 Titre : Traitement d’images BMP (8 et 24 bits) en C
 Binôme : Amine Koumtani & Riad DIB
