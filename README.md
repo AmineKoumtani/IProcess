@@ -2,14 +2,26 @@
 
 Projet C – Traitement et manipulation d’images BMP
 
-Ce projet a été réalisé en binôme par Amine Koumtani et moi-même, Riad DIB, dans le cadre des travaux pratiques d'informatique. Dès la première séance, nous avons mis en place notre environnement de travail, partagé les fichiers nécessaires et commencé à suivre les indications du sujet. Notre objectif était de développer un programme capable de charger, traiter et sauvegarder des images au format BMP, en 8 et 24 bits.
+Titre : Traitement d’images BMP (8 et 24 bits) en C
+Binôme : Amine Koumtani & Riad DIB
 
-Cependant, au bout d’une semaine, j’ai dû changer d’ordinateur, ce qui a ralenti notre progression. J’ai dû réinstaller tous les outils et reprendre les liens de travail que nous avions partagés. Durant la pause pédagogique, Amine était à l’étranger, ce qui rendait notre communication difficile. Pour chaque avancement, je lui transmettais les fichiers pour qu’il les ajoute au dépôt Git, mais cela a vite montré ses limites.
+l'objectif du travail été de développer un programme en langage C qui permet de lire, modifier et sauvegarder des images au format BMP, en noir et blanc (8 bits) ou en couleur (24 bits), avec plusieurs filtres de traitement (négatif, flou, contours, etc.).
 
-Par la suite, Amine a été victime d’un accident et a dû prolonger son séjour à l’étranger. Il n’était plus disponible ni joignable, ce qui a fortement perturbé notre travail en binôme. J’ai donc décidé de tout reprendre seul depuis le début, en me basant uniquement sur les consignes données par le professeur, que ce soit pour la structure des fichiers ou le développement des fonctions.
+On a donc commencé dès les premières séances de TP, en mettant en place les outils (CLion, GitHub, CMake) et en se partageant les premières tâches. Malheureusement, des imprévus sont arrivés : j’ai (Riad DIB) dû changer d’ordinateur, ce qui m’a fait perdre mes accès au Github et clion...
+Ensuite, un événement imprévu est arrivé : Amine a eu un accident et a dû rester bloqué à l’étranger pendant un certain temps. 
+Il n’était donc plus disponible pour travailler sur le projet, ni même joignable, ce qui a rendu le travail en binôme presque impossible à distance.
+C’est pour cette raison que nous n’avons pas pu rendre la première partie dans les temps, et que j’ai dû reprendre tout le projet depuis le début, seul.
 
-La première partie n’a malheureusement pas pu être rendue à cause de ces imprévus. En revanche, la deuxième partie, centrée sur la gestion des images 24 bits, a été traitée avec rigueur. Toutes les fonctions demandées ont été développées une par une, en respectant les signatures attendues. Nous avons suivi les instructions données dans le document du projet, notamment pour les opérations de traitement d’image comme le négatif, le niveau de gris, les effets de flou, de netteté, de contours, ou encore l’égalisation d’histogramme. Un menu permet à l’utilisateur de choisir l’image, le type de traitement et de sauvegarder le résultat.
+Le programme propose un menu en console qui permet de :
+Charger une image BMP en 8 ou 24 bits
+Appliquer un filtre (négatif, luminosité, etc.)
+Sauvegarder le résultat automatiquement
+Appliquer des effets plus complexes sur les images couleurs (convolution, flou, contours…)
 
-Même si nous n’avons pas eu le temps de compléter la dernière partie, ce projet nous a permis de mieux comprendre la gestion de fichiers binaires en C, le fonctionnement des tableaux de pixels et l'application d'algorithmes d'image. Cela a aussi été une leçon sur l’importance de la gestion du temps et de l’organisation dans le travail à deux, surtout quand des imprévus surviennent.
+Au début, on s’était réparti les fichiers et les menus. Mais avec l’absence d’Amine, j’ai pris en charge quasiment tout le développement. Vers la fin, on a quand même pu synchroniser les fichiers ensemble avec l’aide du professeur. La partie 3 n’a pas pu être faite par manque de temps.
 
-En résumé, malgré les difficultés techniques et personnelles, nous avons fait le nécessaire pour rendre un travail propre, fonctionnel et fidèle aux consignes, en tirant le meilleur de ce que nous pouvions faire dans le temps imparti
+Malgré tout, ce projet nous a permis de mieux comprendre le fonctionnement du langage C (comme la manipulation d’images en C, la structure des fichiers BMP, les pointeurs, et l’organisation d’un programme), les conversions entre pixels, et de mettre en œuvre concrètement des algorithmes sur des images qui a été une première pour nous.
+Ça a aussi été une bonne leçon d’organisation et de gestion des imprévus, surtout dans un travail à deux.
+
+En résumé, même si les conditions n’étaient pas idéales, nous avons fait le maximum pour respecter les attentes.
+Ce projet nous a permis de mieux comprendre la manipulation d’images en C, la structure des fichiers BMP, les pointeurs, et l’organisation d’un programme modulaire. On a aussi dû gérer des imprévus, ce qui a été formateur.
