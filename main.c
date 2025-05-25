@@ -10,6 +10,7 @@ int main() {
     char fichier[256];
 
     while (1) {
+        // Menu principal
         printf("\n--- MENU ---\n");
         printf("0. Quitter\n");
         printf("1. Image noir et blanc\n");
@@ -20,17 +21,20 @@ int main() {
 
         if (type == 0) break;
 
+        // Demande du nom du fichier image
         printf("Nom du fichier : ");
         fgets(fichier, sizeof(fichier), stdin);
-        fichier[strcspn(fichier, "\n")] = 0;
+        fichier[strcspn(fichier, "\n")] = 0; // Suppression du \n
 
         if (type == 1) {
+            // Traitement d'une image 8 bits
             t_bmp8 *img = bmp8_loadImage(fichier);
             if (!img) {
                 printf("Fichier introuvable.\n");
                 continue;
             }
 
+            // Menu des filtres 8 bits
             printf("1. Négatif\n");
             printf("2. Luminosité\n");
             printf("3. Seuil\n");
@@ -58,12 +62,14 @@ int main() {
         }
 
         else if (type == 2) {
+            // Traitement d'une image 24 bits
             t_bmp24 *img = bmp24_loadImage(fichier);
             if (!img) {
                 printf("Fichier introuvable.\n");
                 continue;
             }
 
+            // Menu des filtres 24 bits
             printf("1. Négatif\n");
             printf("2. Niveaux de gris\n");
             printf("3. Luminosité\n");
@@ -83,6 +89,7 @@ int main() {
                 bmp24_brightness(img, valeur);
                 bmp24_saveImage("lumineux.bmp", img);
             } else if (filtre == 4) {
+                // Menu des effets spéciaux (convolutions)
                 printf("1. Flou simple\n");
                 printf("2. Flou doux\n");
                 printf("3. Contours\n");

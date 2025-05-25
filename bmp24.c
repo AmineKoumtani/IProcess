@@ -4,12 +4,14 @@
 #include <string.h>
 #include <math.h>
 
+// Charge une image BMP 24 bits en mémoire
 t_bmp24 *bmp24_loadImage(const char *filename) {
     FILE *file = fopen(filename, "rb");
     if (!file) return NULL;
 
     unsigned char header[54];
     fread(header, 1, 54, file);
+
     if (header[0] != 'B' || header[1] != 'M') {
         fclose(file);
         return NULL;
@@ -47,6 +49,7 @@ t_bmp24 *bmp24_loadImage(const char *filename) {
     return img;
 }
 
+// Applique un filtre de convolution sur un pixel
 t_pixel bmp24_convolution(t_bmp24 *img, int x, int y, float **kernel, int size) {
     int offset = size / 2;
     float r = 0, g = 0, b = 0;
@@ -70,6 +73,7 @@ t_pixel bmp24_convolution(t_bmp24 *img, int x, int y, float **kernel, int size) 
     return res;
 }
 
+// Applique le filtre à l'image entière
 void bmp24_applyFilter(t_bmp24 *img, float **kernel, int size) {
     int n = size / 2;
     t_pixel *temp = malloc(img->width * img->height * sizeof(t_pixel));
@@ -86,6 +90,7 @@ void bmp24_applyFilter(t_bmp24 *img, float **kernel, int size) {
     free(temp);
 }
 
+// Sauvegarde l'image BMP 24 bits dans un fichier
 void bmp24_saveImage(const char *filename, t_bmp24 *img) {
     FILE *file = fopen(filename, "wb");
     if (!file) return;
@@ -124,17 +129,20 @@ void bmp24_saveImage(const char *filename, t_bmp24 *img) {
     fclose(file);
 }
 
+// Libère la mémoire de l'image
 void bmp24_free(t_bmp24 *img) {
     if (!img) return;
     free(img->pixels);
     free(img);
 }
 
+// Affiche les infos de l'image
 void bmp24_printInfo(t_bmp24 *img) {
     if (!img) return;
     printf("Largeur : %d\nHauteur : %d\nCouleur : %d bits\n", img->width, img->height, img->colorDepth);
 }
 
+// Inverse les couleurs (effet négatif)
 void bmp24_negative(t_bmp24 *img) {
     for (int y = 0; y < img->height; y++)
         for (int x = 0; x < img->width; x++) {
@@ -145,6 +153,7 @@ void bmp24_negative(t_bmp24 *img) {
         }
 }
 
+// Convertit l'image en niveaux de gris
 void bmp24_grayscale(t_bmp24 *img) {
     for (int y = 0; y < img->height; y++)
         for (int x = 0; x < img->width; x++) {
@@ -154,6 +163,7 @@ void bmp24_grayscale(t_bmp24 *img) {
         }
 }
 
+// Ajuste la luminosité
 void bmp24_brightness(t_bmp24 *img, int value) {
     for (int y = 0; y < img->height; y++)
         for (int x = 0; x < img->width; x++) {
@@ -167,6 +177,7 @@ void bmp24_brightness(t_bmp24 *img, int value) {
         }
 }
 
+// Égalise l'histogramme en YUV
 void bmp24_equalize(t_bmp24 *img) {
     if (!img || !img->pixels) return;
     int w = img->width, h = img->height, size = w * h;
@@ -211,6 +222,7 @@ void bmp24_equalize(t_bmp24 *img) {
     }
 }
 
+// Filtres spéciaux
 void bmp24_boxBlur(t_bmp24 *img) {
     float kernel[3][3] = {
         {1.0f/9, 1.0f/9, 1.0f/9},
