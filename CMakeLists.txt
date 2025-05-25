@@ -3,4 +3,8 @@ project(IPProcess C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(IPProcess main.c bmp8.c)
+add_executable(IPProcess
+        main.c
+        bmp8.c
+        bmp24.c
+)
