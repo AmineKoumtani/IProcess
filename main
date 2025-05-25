@@ -1,0 +1,24 @@
+#include "bmp8.h"
+#include "bmp24.h"
+
+
+
+t_bmp24 *img = bmp24_allocate(100, 100, 24);  // test
+if (img) {
+    printf("Image 24 bits allouée (%d x %d)\n", img->width, img->height);
+    bmp24_free(img);
+}
+
+int main() {
+    t_bmp8 *img = bmp8_loadImage("C:\\Users\\koumt\\Downloads\\barbara_gray.bmp"); // Remplace par un nom de fichier réel
+
+    if (img) {
+        bmp8_printInfo(img);
+        bmp8_saveImage("copie.bmp", img);
+        bmp8_free(img);
+    } else {
+        printf("Échec du chargement de l'image.\n");
+    }
+
+    return 0;
+}
